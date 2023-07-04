@@ -1,4 +1,4 @@
-package parquet_reader_test
+package reader_test
 
 import (
 	"bufio"
@@ -8,7 +8,7 @@ import (
 	"github.com/xitongsys/parquet-go/parquet"
 	"github.com/xitongsys/parquet-go/writer"
 	"os"
-	"parquimetro/pkg/parquet_reader"
+	"parquimetro/pkg/reader"
 	"strings"
 	"testing"
 )
@@ -56,7 +56,7 @@ func GenerateFakeParquet(path string, rows int) error {
 	return nil
 }
 
-func TestParquetReader_Read(t *testing.T) {
+func TestReader_Read(t *testing.T) {
 	fakeParquetPath := fmt.Sprintf("/tmp/fake_parquet_test_%s.parquet", uuid.New().String())
 	numberOfRows := 10
 
@@ -78,8 +78,8 @@ func TestParquetReader_Read(t *testing.T) {
 	// Redirect the standard output to the file
 	os.Stdout = file
 
-	opts := parquet_reader.NewParquetReaderOpts(2, 0, 1)
-	parquet_reader.NewParquetReader(fr, opts).Read()
+	opts := reader.NewReaderOpts(2, 0, 1)
+	reader.NewReader(fr, opts).Read()
 
 	file2, _ := os.Open("output.txt")
 	defer file2.Close()

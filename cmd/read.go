@@ -6,7 +6,7 @@ import (
 	"github.com/xitongsys/parquet-go-source/local"
 	"net/url"
 	"os"
-	"parquimetro/pkg/parquet_reader"
+	"parquimetro/pkg/reader"
 )
 
 var readCmd = &cobra.Command{
@@ -38,9 +38,9 @@ parquimetro read ~/Downloads/parquet.parquet`,
 
 		fr, err := local.NewLocalFileReader(uri.Path)
 
-		opts := parquet_reader.NewParquetReaderOpts(readCount, skipCount, concurrencyCount)
+		opts := reader.NewReaderOpts(readCount, skipCount, concurrencyCount)
 
-		parquet_reader.NewParquetReader(fr, opts).Read()
+		reader.NewReader(fr, opts).Read()
 	},
 }
 
@@ -48,6 +48,5 @@ func init() {
 	rootCmd.AddCommand(readCmd)
 
 	readCmd.Flags().Int64P("count", "c", 25, "Number of rows to be printed")
-	readCmd.Flags().Int64P("threads", "t", 1, "Concurrency Number")
 	readCmd.Flags().Int64P("skip", "s", 0, "Number of rows to be skipped (from the beginning).")
 }

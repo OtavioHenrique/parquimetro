@@ -18,3 +18,7 @@ func Execute() {
 		os.Exit(1)
 	}
 }
+
+func Init() {
+	rootCmd.Flags().Int64P("threads", "t", 1, "Concurrency Number. Used on commands that reads parquets")
+}

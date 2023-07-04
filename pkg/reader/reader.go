@@ -1,4 +1,4 @@
-package parquet_reader
+package reader
 
 import (
 	"encoding/json"
@@ -8,14 +8,14 @@ import (
 	"os"
 )
 
-type ParquetReaderOpts struct {
+type ReaderOpts struct {
 	count       int64
 	skip        int64
 	concurrency int64
 }
 
-func NewParquetReaderOpts(count int64, skip int64, concurrency int64) *ParquetReaderOpts {
-	opts := new(ParquetReaderOpts)
+func NewReaderOpts(count int64, skip int64, concurrency int64) *ReaderOpts {
+	opts := new(ReaderOpts)
 
 	opts.count = count
 	opts.skip = skip
@@ -24,13 +24,13 @@ func NewParquetReaderOpts(count int64, skip int64, concurrency int64) *ParquetRe
 	return opts
 }
 
-type ParquetReader struct {
+type Reader struct {
 	file source.ParquetFile
-	opts *ParquetReaderOpts
+	opts *ReaderOpts
 }
 
-func NewParquetReader(file source.ParquetFile, opts *ParquetReaderOpts) *ParquetReader {
-	pr := new(ParquetReader)
+func NewReader(file source.ParquetFile, opts *ReaderOpts) *Reader {
+	pr := new(Reader)
 
 	pr.file = file
 	pr.opts = opts
@@ -38,7 +38,7 @@ func NewParquetReader(file source.ParquetFile, opts *ParquetReaderOpts) *Parquet
 	return pr
 }
 
-func (pr *ParquetReader) Read() {
+func (pr *Reader) Read() {
 	reader, err := reader.NewParquetReader(pr.file, nil, pr.opts.concurrency)
 
 	if err != nil {
@@ -57,7 +57,7 @@ func (pr *ParquetReader) Read() {
 			fmt.Printf("Can't skip[: %s\n", err)
 			os.Exit(1)
 		}
-		
+
 		res, err := reader.ReadByNumber(cnt)
 		if err != nil {
 			fmt.Printf("Can't cat: %s\n", err)
