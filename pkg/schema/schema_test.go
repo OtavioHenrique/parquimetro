@@ -1,14 +1,13 @@
-package reader_test
+package schema_test
 
 import (
-	"bufio"
 	"fmt"
 	"github.com/google/uuid"
 	"github.com/xitongsys/parquet-go-source/local"
 	"github.com/xitongsys/parquet-go/parquet"
 	"github.com/xitongsys/parquet-go/writer"
 	"os"
-	"parquimetro/pkg/reader"
+	"parquimetro/pkg/schema"
 	"strings"
 	"testing"
 )
@@ -56,7 +55,7 @@ func GenerateFakeParquet(path string, rows int) error {
 	return nil
 }
 
-func TestReader_Read(t *testing.T) {
+func TestSchema_Show(t *testing.T) {
 	fakeParquetPath := fmt.Sprintf("/tmp/fake_parquet_test_%s.parquet", uuid.New().String())
 	numberOfRows := 10
 
@@ -79,19 +78,23 @@ func TestReader_Read(t *testing.T) {
 	// Redirect the standard output to the file
 	os.Stdout = file
 
-	opts := reader.NewReaderOpts(2, 0, 1)
-	reader.NewReader(fr, opts).Read()
+	opts := schema.NewSchemaOpts("json", 1, true)
+	schema.NewSchema(fr, opts).Show()
 
-	outputFile, _ := os.Open(stdoutFileName)
-	defer outputFile.Close()
-	scanner := bufio.NewScanner(outputFile)
-	scanner.Scan()
+	outputFile, _ := os.ReadFile(stdoutFileName)
 
-	if !strings.Contains(scanner.Text(), "PersonName0") {
+	subStr := "Tag\": \"name=Id, type=INT64, repetitiontype=REQUIRED"
+	if !strings.Contains(string(outputFile), subStr) {
 		t.Errorf("Parquet read doesn't contain expected output")
 	}
 
-	if !strings.Contains(scanner.Text(), "PersonName1") {
+	subStr = "Tag\": \"name=Name, type=BYTE_ARRAY, convertedtype=UTF8, repetitiontype=REQUIRED"
+	if !strings.Contains(string(outputFile), subStr) {
+		t.Errorf("Parquet read doesn't contain expected output")
+	}
+
+	subStr = "Tag\": \"name=Age, type=INT32, repetitiontype=REQUIRED"
+	if !strings.Contains(string(outputFile), subStr) {
 		t.Errorf("Parquet read doesn't contain expected output")
 	}
 
