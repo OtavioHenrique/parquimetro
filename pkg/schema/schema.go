@@ -10,16 +10,16 @@ import (
 
 type Opts struct {
 	format      string
-	concurrency int64
 	showTags    bool
+	concurrency int64
 }
 
-func NewSchemaOpts(format string, concurrency int64, showTags bool) *Opts {
+func NewSchemaOpts(format string, showTags bool, concurrency int64) *Opts {
 	opts := new(Opts)
 
 	opts.format = format
-	opts.concurrency = concurrency
 	opts.showTags = showTags
+	opts.concurrency = concurrency
 
 	return opts
 }

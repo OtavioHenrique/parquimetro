@@ -21,8 +21,8 @@ parquimetro schema -f go ~/path/to/file/parquet (read parquet as go struct)
 parquimetro schema -f go --tags ~/path/to/file.parquet (show struct tags, only valid if format is go)`,
 	Run: func(cmd *cobra.Command, args []string) {
 		format, _ := cmd.Flags().GetString("format")
-		concurrencyCount, _ := cmd.Flags().GetInt64("threads")
 		tags, _ := cmd.Flags().GetBool("tags")
+		concurrencyCount, _ := cmd.Flags().GetInt64("threads")
 
 		var fileName string
 		if len(args) > 0 {
@@ -41,7 +41,7 @@ parquimetro schema -f go --tags ~/path/to/file.parquet (show struct tags, only v
 
 		fr, err := local.NewLocalFileReader(uri.Path)
 
-		opts := schema.NewSchemaOpts(format, concurrencyCount, tags)
+		opts := schema.NewSchemaOpts(format, tags, concurrencyCount)
 
 		schema.NewSchema(fr, opts).Show()
 	},

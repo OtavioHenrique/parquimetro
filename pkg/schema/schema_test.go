@@ -78,7 +78,7 @@ func TestSchema_Show(t *testing.T) {
 	// Redirect the standard output to the file
 	os.Stdout = file
 
-	opts := schema.NewSchemaOpts("json", 1, true)
+	opts := schema.NewSchemaOpts("json", true, 1)
 	schema.NewSchema(fr, opts).Show()
 
 	outputFile, _ := os.ReadFile(stdoutFileName)
