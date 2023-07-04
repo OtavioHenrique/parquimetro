@@ -9,7 +9,10 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "parquimetro",
 	Short: "A small CLI to deal with parquet files",
-	Long:  `A simple but powerful CLI to deal with parquet files.`,
+	Long: `A simple but powerful CLI to deal with parquet files.
+
+parquimetro read ~/path/to/file.parquet (read parquet)
+parquimetro schema ~/path/to/file.parquet (show parquet schema)`,
 }
 
 func Execute() {

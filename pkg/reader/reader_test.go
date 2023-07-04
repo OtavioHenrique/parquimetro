@@ -87,11 +87,8 @@ func TestReader_Read(t *testing.T) {
 	scanner := bufio.NewScanner(outputFile)
 	scanner.Scan()
 
-	if !strings.Contains(scanner.Text(), "PersonName0") {
-		t.Errorf("Parquet read doesn't contain expected output")
-	}
-
-	if !strings.Contains(scanner.Text(), "PersonName1") {
+	subStr := "[{\"Id\":0,\"Name\":\"PersonName0\",\"Age\":0},{\"Id\":1,\"Name\":\"PersonName1\",\"Age\":1}]"
+	if !strings.Contains(scanner.Text(), subStr) {
 		t.Errorf("Parquet read doesn't contain expected output")
 	}
 
