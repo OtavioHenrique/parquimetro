@@ -8,14 +8,14 @@ import (
 	"os"
 )
 
-type ReaderOpts struct {
+type Opts struct {
 	count       int64
 	skip        int64
 	concurrency int64
 }
 
-func NewReaderOpts(count int64, skip int64, concurrency int64) *ReaderOpts {
-	opts := new(ReaderOpts)
+func NewReaderOpts(count int64, skip int64, concurrency int64) *Opts {
+	opts := new(Opts)
 
 	opts.count = count
 	opts.skip = skip
@@ -26,10 +26,10 @@ func NewReaderOpts(count int64, skip int64, concurrency int64) *ReaderOpts {
 
 type Reader struct {
 	file source.ParquetFile
-	opts *ReaderOpts
+	opts *Opts
 }
 
-func NewReader(file source.ParquetFile, opts *ReaderOpts) *Reader {
+func NewReader(file source.ParquetFile, opts *Opts) *Reader {
 	pr := new(Reader)
 
 	pr.file = file
