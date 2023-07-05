@@ -2,10 +2,10 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/otaviohenrique/parquimetro/pkg/schema"
 	"github.com/xitongsys/parquet-go-source/local"
 	"net/url"
 	"os"
-	"parquimetro/pkg/schema"
 
 	"github.com/spf13/cobra"
 )
