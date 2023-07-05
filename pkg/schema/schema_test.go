@@ -3,11 +3,11 @@ package schema_test
 import (
 	"fmt"
 	"github.com/google/uuid"
+	"github.com/otaviohenrique/parquimetro/pkg/schema"
 	"github.com/xitongsys/parquet-go-source/local"
 	"github.com/xitongsys/parquet-go/parquet"
 	"github.com/xitongsys/parquet-go/writer"
 	"os"
-	"parquimetro/pkg/schema"
 	"strings"
 	"testing"
 )

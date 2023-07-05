@@ -4,11 +4,11 @@ import (
 	"bufio"
 	"fmt"
 	"github.com/google/uuid"
+	"github.com/otaviohenrique/parquimetro/pkg/reader"
 	"github.com/xitongsys/parquet-go-source/local"
 	"github.com/xitongsys/parquet-go/parquet"
 	"github.com/xitongsys/parquet-go/writer"
 	"os"
-	"parquimetro/pkg/reader"
 	"strings"
 	"testing"
 )
