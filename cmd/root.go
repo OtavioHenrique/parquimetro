@@ -22,6 +22,6 @@ func Execute() {
 	}
 }
 
-func Init() {
-	rootCmd.Flags().Int64P("threads", "t", 1, "Concurrency Number. Used on commands that reads parquets")
+func init() {
+	rootCmd.PersistentFlags().Int64P("threads", "t", 1, "Concurrency Number. Used on commands that reads parquets")
 }
