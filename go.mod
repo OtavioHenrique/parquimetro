@@ -1,4 +1,4 @@
-module parquimetro
+module github.com/otaviohenrique/parquimetro
 
 go 1.19
 
