@@ -46,3 +46,14 @@ Just as schema, read command can be easily used together with `jq`:
 ```
 parquimetro read ~/path/to/file.parquet | jq .
 ```
+
+
+## Installing
+
+If you have go installed:
+
+```
+go install github.com/otaviohenrique/parquimetro@latest
+```
+
+Or if you want, you can [download the release on our releases page](https://github.com/OtavioHenrique/parquimetro/releases) and install it.
