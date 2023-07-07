@@ -1,3 +1,5 @@
+<center><img src='https://github.com/OtavioHenrique/parquimetro/assets/11178512/036dc50c-57bd-4439-855b-3c09eeba72ab' width='250'></center>
+
 Parquimetro
 =======
 
