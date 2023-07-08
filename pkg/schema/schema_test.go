@@ -99,4 +99,5 @@ func TestSchema_Show(t *testing.T) {
 	}
 
 	os.Remove(stdoutFileName)
+	os.Remove(fakeParquetPath)
 }
