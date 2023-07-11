@@ -37,10 +37,13 @@ parquimetro read ~/Downloads/parquet.parquet`,
 		}
 
 		fr, err := local.NewLocalFileReader(uri.Path)
+		if err != nil {
+			fmt.Printf("Error creating file reader %s\n", err)
+		}
 
-		opts := reader.NewReaderOpts(readCount, skipCount, concurrencyCount)
+		opts := reader.NewReadOpts(readCount, skipCount)
 
-		reader.NewReader(fr, opts).Read()
+		reader.NewReader(fr, concurrencyCount).Read(opts)
 	},
 }
 

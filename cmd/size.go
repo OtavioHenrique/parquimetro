@@ -5,7 +5,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/otaviohenrique/parquimetro/pkg/size"
+	"github.com/otaviohenrique/parquimetro/pkg/reader"
 	"github.com/spf13/cobra"
 	"github.com/xitongsys/parquet-go-source/local"
 	"net/url"
@@ -37,8 +37,12 @@ var sizeCmd = &cobra.Command{
 		}
 
 		fr, err := local.NewLocalFileReader(uri.Path)
-		opts := size.NewOpts(concurrencyCount)
-		parquetSize := size.NewSize(fr, opts)
+
+		if err != nil {
+			fmt.Printf("Error creating file reader %s\n", err)
+		}
+
+		parquetSize := reader.NewReader(fr, concurrencyCount)
 
 		if showCompressed {
 			println(parquetSize.CompressedSize())

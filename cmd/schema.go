@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/otaviohenrique/parquimetro/pkg/schema"
+	"github.com/otaviohenrique/parquimetro/pkg/reader"
 	"github.com/xitongsys/parquet-go-source/local"
 	"net/url"
 	"os"
@@ -40,10 +40,13 @@ parquimetro schema -f go --tags ~/path/to/file.parquet (show struct tags, only v
 		}
 
 		fr, err := local.NewLocalFileReader(uri.Path)
+		if err != nil {
+			fmt.Printf("Error creating file reader %s\n", err)
+		}
 
-		opts := schema.NewSchemaOpts(format, tags, concurrencyCount)
+		opts := reader.NewSchemaOpts(format, tags)
 
-		schema.NewSchema(fr, opts).Show()
+		reader.NewReader(fr, concurrencyCount).ShowSchema(opts)
 	},
 }
 
