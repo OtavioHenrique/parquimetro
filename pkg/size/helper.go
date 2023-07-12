@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func formatBytes(bytes float64, unit string) (string, error) {
+func FormatBytes(bytes float64, unit string) (string, error) {
 	var size float64
 
 	switch unit {
@@ -24,7 +24,7 @@ func formatBytes(bytes float64, unit string) (string, error) {
 	return fmt.Sprintf("%.2f %s", size, unit), nil
 }
 
-func prettyFormatSize(bytes int64) string {
+func PrettyFormatSize(bytes int64) string {
 	units := []string{"B", "KB", "MB", "GB", "TB"}
 	base := int64(1024)
 

@@ -24,7 +24,7 @@ func Test_formatBytes(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := formatBytes(tt.args.bytes, tt.args.unit)
+			got, err := FormatBytes(tt.args.bytes, tt.args.unit)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("formatBytes() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -53,7 +53,7 @@ func Test_prettyFormatSize(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := prettyFormatSize(tt.args.bytes); got != tt.want {
+			if got := PrettyFormatSize(tt.args.bytes); got != tt.want {
 				t.Errorf("prettyFormatSize() = %v, want %v", got, tt.want)
 			}
 		})
