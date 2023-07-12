@@ -47,6 +47,20 @@ Just as schema, read command can be easily used together with `jq`:
 parquimetro read ~/path/to/file.parquet | jq .
 ```
 
+#### Size
+
+Easy know size related data:
+
+```
+go run main.go size ~/Downloads/userdata1.parquet
+```
+
+Options available:
+
+* Uncompressed: `--uncompressed` show uncompressed size (Default `true`)
+* Compressed: `--compressed` show compressed size (Default `false`)
+* Pretty: `--pretty` show pretty size, it will use the best format to print (Default `true`)
+* Format: `--format` or `-f` give format to print output. Acceptable formats: `KB`, `MB`, `GB`, `TB`. (Lower priority than `pretty`, need to set `--pretty=false` to use)
 
 ## Installing
 
