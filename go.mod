@@ -3,7 +3,7 @@ module github.com/otaviohenrique/parquimetro
 go 1.20
 
 require (
-	github.com/google/uuid v1.3.0
+	github.com/google/uuid v1.5.0
 	github.com/spf13/cobra v1.8.0
 	github.com/xitongsys/parquet-go v1.6.2
 	github.com/xitongsys/parquet-go-source v0.0.0-20230607234618-40034c8066df
